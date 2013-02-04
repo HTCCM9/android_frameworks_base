@@ -128,7 +128,20 @@ public:
     void dump() const;
     status_t dump(int fd, const Vector<String16>& args) const;
 
-    // Parameter keys to communicate between camera application and driver.
+    // Start - Parameter keys for HTC Evo V 4G.
+#ifdef QCOM_HARDWARE
+    void set3DFileFormat(const char* buffer);
+#endif
+
+#ifdef QCOM_HARDWARE
+    static const char KEY_SUPPORTED_3D_FILE_FORMAT[];
+    static const char FILE_FORMAT_MPO[];
+    static const char FILE_FORMAT_JPS[];
+    static const char SCENE_MODE_FLOWERSEANTIBANDING_OFF[];
+#endif
+    // End - Parameter keys for HTC Evo V 4G.
+
+
     // The access (read/write, read only, or write only) is viewed from the
     // perspective of applications, not driver.
 
@@ -591,10 +604,9 @@ public:
     static const char KEY_GPS_ALTITUDE_REF[];
     static const char KEY_GPS_STATUS[];
     static const char KEY_EXIF_DATETIME[];
-#ifndef SAMSUNG_CAMERA_HARDWARE
     static const char KEY_ISO_MODE[];
     static const char KEY_SUPPORTED_ISO_MODES[];
-#endif
+
 #endif
 
     // The state of the video stabilization. If set to true, both the
@@ -661,8 +673,6 @@ public:
     static const char KEY_METERING[];
     static const char KEY_WDR[];
     static const char KEY_ANTI_SHAKE_MODE[];
-    static const char KEY_ISO_MODE[];
-    static const char KEY_SUPPORTED_ISO_MODES[];
 #endif
 
     // Values for white balance settings.
@@ -750,9 +760,6 @@ public:
     static const char SCENE_DETECT_ON[];
 #endif
     static const char PIXEL_FORMAT_YUV422SP[];
-#ifdef STE_HARDWARE
-    static const char PIXEL_FORMAT_YUV420P[]; // YV12
-#endif
     static const char PIXEL_FORMAT_YUV420SP[]; // NV21
 #ifdef STE_HARDWARE
     static const char PIXEL_FORMAT_YUV420SPNV12[]; // NV12
@@ -761,15 +768,12 @@ public:
     static const char PIXEL_FORMAT_YUV420SP_ADRENO[]; // ADRENO
 #endif
     static const char PIXEL_FORMAT_YUV422I[]; // YUY2
-#ifndef STE_HARDWARE
     static const char PIXEL_FORMAT_YUV420P[]; // YV12
-#else
     static const char PIXEL_FORMAT_YVU422SP[];
     static const char PIXEL_FORMAT_YVU422P[];
     static const char PIXEL_FORMAT_YVU420SP[];
     static const char PIXEL_FORMAT_YVU420P[];
     static const char PIXEL_FORMAT_YUV420MB[];
-#endif
     static const char PIXEL_FORMAT_RGB565[];
     static const char PIXEL_FORMAT_RGBA8888[];
     static const char PIXEL_FORMAT_JPEG[];
